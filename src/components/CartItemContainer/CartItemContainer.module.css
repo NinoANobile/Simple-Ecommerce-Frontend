@@ -1,0 +1,8 @@
+@media only screen and (max-width: 600px) {
+    .cartItemContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+    }
+}

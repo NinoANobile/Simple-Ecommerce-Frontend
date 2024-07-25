@@ -1,0 +1,30 @@
+.home_container {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-areas:
+        "topAppBar topAppBar topAppBar"
+        "main main main";
+    gap: 1rem;
+}
+
+@media (min-width: 700px) and (max-width: 1199px) {
+    .home_container {
+        grid-template-columns: 1fr 3fr 1fr;
+        grid-template-areas:
+            "topAppBar topAppBar topAppBar"
+            "main main sideSheet";
+    }
+}
+
+@media (min-width: 1200px) {
+    .home_container {
+        grid-template-columns: 1fr 3fr 1fr;
+        grid-template-areas:
+            "topAppBar topAppBar topAppBar"
+            "drawer main sideSheet";
+    }
+}
+
+.home_main {
+    grid-area: main;
+}

@@ -1,0 +1,42 @@
+.topbarcontainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 9.5rem;
+    padding: 1.25rem 1rem 1.75rem 1rem;
+    background-color: var(--md-sys-color-surface);
+}
+
+.topbar_iconcontainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.topbar_leadicon {
+    height: 1.5rem;
+    aspect-ratio: 1;
+    text-align: center;
+}
+
+.topbar_leadicon i {
+    color: var(--md-sys-color-on-surface);
+}
+
+.topbar_trailcon i {
+    color: var(--md-sys-color-on-surface-variant);
+}
+
+.topbar_trailcon {
+    height: 1.5rem;
+    aspect-ratio: 1;
+    text-align: center;
+}
+
+.topbar_headline {
+    font-family: Roboto;
+    font-size: 1.75rem;
+    font-weight: 400;
+    line-height: 1.75rem;
+    color: var(--md-sys-color-on-surface);
+    letter-spacing: 0px;
+}

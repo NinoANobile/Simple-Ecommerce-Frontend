@@ -1,0 +1,36 @@
+/* OrderCard.module.css */
+
+.orderCard {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+}
+
+.orderCard h3 {
+    color: #333;
+    font-size: 1.2em;
+}
+
+.orderCard p {
+    color: #666;
+    margin: 5px 0;
+}
+
+.orderCard ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.orderCard li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.orderCard li:first-child {
+    margin-top: 0;
+}

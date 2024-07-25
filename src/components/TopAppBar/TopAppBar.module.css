@@ -1,0 +1,13 @@
+.topAppBar_container {
+    grid-area: topAppBar;
+}
+
+.topAppBar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.topAppBar_left {
+    display: flex;
+    gap: 0.5rem;
+}

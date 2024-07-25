@@ -1,0 +1,228 @@
+/* ******************** ESTILOS BASE ******************** */
+/* ***** ESTADO 1: !FOCUS - !INPUT - !HOVER - !ERROR ***** */
+
+.textfield_container {
+    display: flex;
+    flex-direction: column;
+    /* height: calc(var(--textfield-height, 3.5rem) + 0.25rem + 1rem); */
+    gap: 0.25rem;
+    width: var(--textfield-width, auto);
+}
+
+.textfield_outlined {
+    position: relative;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    height: var(--textfield-height, 3.5rem);
+    padding: 0 0.75rem;
+    border: 1px solid var(--md-sys-color-outline);
+    border-radius: 0.25rem;
+    transition: all 50ms cubic-bezier(0, 0, 0, 1);
+    overflow: visible;
+    z-index: 1;
+}
+
+.textfield_leadicon,
+.textfield_trailicon {
+    display: flex;
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--md-sys-color-on-surface-variant);
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    min-width: 1.5rem;
+}
+
+.textfield_inputwrapper {
+    position: relative;
+    display: flex;
+    flex-grow: 1;
+    min-width: 2rem;
+    z-index: 2;
+}
+
+.textfield_label {
+    position: absolute;
+    top: 0rem;
+    left: 0;
+    font-family: Roboto;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5rem;
+    color: var(--md-sys-color-on-surface-variant);
+    letter-spacing: 0.5px;
+    background-color: transparent;
+    transition: all 0.15s cubic-bezier(0, 0, 0, 1);
+    z-index: 3;
+}
+
+.textfield_input {
+    position: relative;
+    border: none;
+    outline: none;
+    padding: 0;
+    background-color: transparent;
+    font-family: Roboto;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5rem;
+    letter-spacing: 0.5px;
+    color: var(--md-sys-color-on-surface);
+    flex-grow: 1;
+    min-width: 2rem;
+    z-index: 4;
+}
+
+input::placeholder {
+    color: transparent;
+}
+
+.textfield_suptextcontainer {
+    font-family: Roboto;
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1rem;
+    letter-spacing: 0.4px;
+    width: 100%;
+    color: var(--md-sys-color-on-surface-variant);
+    padding: 0 1rem;
+}
+
+/* ******************** ESTADO SIN ERRORES ******************** */
+/* ***** ESTADO 2: FOCUS - !INPUT - !HOVER - !ERROR ***** */
+
+.textfield_outlined:focus-visible {
+    outline: none;
+}
+
+.textfield_outlined:focus-within {
+    border: 3px solid var(--md-sys-color-primary);
+}
+
+/* ***** ANIMACIONES (FOCUS) ***** */
+
+.textfield_inputwrapper::after {
+    content: "";
+    position: absolute;
+    top: calc(-1 * ((var(--textfield-height, 3.5rem) / 2) - 12px));
+    bottom: 0;
+    left: -4px;
+    height: 3px;
+    width: var(--label-width, 0);
+    transform: scaleX(0);
+    transform-origin: center;
+    background-color: var(--md-sys-color-surface);
+    transition: transform 0.15s cubic-bezier(0, 0, 0, 1);
+    z-index: 0;
+}
+
+.textfield_inputwrapper:focus-within::after,
+.textfield_inputwrapper:has(.textfield_input:not(:placeholder-shown))::after {
+    transform: scaleX(1);
+}
+
+.textfield_input:focus-visible+.textfield_label,
+.textfield_input:focus-visible:not(:placeholder-shown)+.textfield_label {
+    /* La altura del contenedor dividida por 2 menos la mitad de 
+    la altura de línea del label en el borde. */
+    transform: translateY(calc(-1 * calc(var(--textfield-height, 3.5rem) / 2 - 0.25rem)));
+    color: var(--md-sys-color-primary);
+    font-size: 0.75rem;
+    caret-color: var(--md-sys-color-primary);
+    line-height: 1rem;
+}
+
+/* ***** ESTADO 3: HOVER - FOCUS - !INPUT - !ERROR ***** */
+@media (hover: hover) and (pointer: fine) {
+    .textfield_outlined:hover {
+        border: 1px solid var(--md-sys-color-on-surface);
+    }
+
+    .textfield_outlined:hover .textfield_label {
+        color: var(--md-sys-color-on-surface);
+    }
+}
+
+/* ***** ESTADO 4: Deshabilitada ***** */
+
+/* ***** ESTADO 5: INPUT - !HOVER - !FOCUS - !ERROR ***** */
+/* Mantiene la transformacion con el input */
+.textfield_input:not(:placeholder-shown)+.textfield_label {
+    transform: translateY(calc(-1 * calc(var(--textfield-height, 3.5rem) / 2 - 0.25rem)));
+    font-size: 0.75rem;
+    line-height: 1rem;
+}
+
+/* ***** ESTADO 6: INPUT - FOCUS - !HOVER - !ERROR ***** */
+
+/* ***** ESTADO 7: INPUT - FOCUS  - HOVER - !ERROR ***** */
+@media (hover: hover) and (pointer: fine) {
+    .textfield_outlined:hover .textfield_input:focus-visible+.textfield_label {
+        color: var(--md-sys-color-on-surface);
+    }
+}
+
+/* ***** ESTADO 8: INPUT - Deshabilitada ***** */
+
+/* ******************** ESTADO CON ERRORES ******************** */
+/* ***** ESTADO 9: ERROR !FOCUS - !INPUT - !HOVER ***** */
+
+.textfield_outlined__error {
+    border: 1px solid var(--md-sys-color-error);
+}
+
+.textfield_trailicon__error {
+    color: var(--md-sys-color-error);
+}
+
+.textfield_outlined__error .textfield_input {
+    caret-color: var(--md-sys-color-error);
+}
+
+.textfield_label.textfield_label__error {
+    color: var(--md-sys-color-error);
+}
+
+.textfield_suptext__error {
+    color: var(--md-sys-color-error);
+}
+
+/* ***** ESTADO 10: FOCUS - ERROR- !INPUT - !HOVER ***** */
+
+.textfield_outlined__error:focus-within {
+    border: 3px solid var(--md-sys-color-error);
+    caret-color: var(--md-sys-color-primary);
+}
+
+/* ***** ESTADO 11: HOVER - FOCUS - ERROR - !INPUT ***** */
+@media (hover: hover) and (pointer: fine) {
+
+    .textfield_outlined__error:hover {
+        border: 1px solid var(--md-sys-color-on-error-container);
+    }
+
+    .textfield_outlined:hover .textfield_label.textfield_label__error {
+        color: var(--md-sys-color-on-error-container);
+    }
+
+    .textfield_outlined:hover .textfield_trailicon.textfield_trailicon__error {
+        color: var(--md-sys-color-on-error-container);
+    }
+}
+
+/* ***** ESTADO 12: INPUT - ERROR - !HOVER - !FOCUS ***** */
+
+/* .textfield_input:not(:placeholder-shown)+.textfield_label.textfield_label__error {
+    color: var(--md-sys-color-error);
+} */
+
+/* ***** ESTADO 13: INPUT - FOCUS - ERROR - !HOVER ***** */
+
+.textfield_input:focus-visible+.textfield_label.textfield_label__error {
+    color: var(--md-sys-color-error);
+}
+
+/* ***** ESTADO 14: INPUT - FOCUS - ERROR - HOVER ***** */

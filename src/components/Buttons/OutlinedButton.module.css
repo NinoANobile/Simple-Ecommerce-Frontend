@@ -1,0 +1,113 @@
+/* 
+Estos estilos se crearon usando las recomendaciones de Material Design 3.
+
+    Para las capas de estado (State Layers), MD3 dice que hay que aplicar una capa
+Con un color determinado y opacidad determinada (Ej: --md-sys-on-color-primary con
+opacidad de 0.1). Estas capas suelen aplicarse con los pseudo elementos after y 
+befor.
+    A fines de simplificar aqui se han implementado usando la propiedad opacity 
+    directamente sobre el color de fondo.
+ */
+
+@keyframes focus-ring {
+    0% {}
+
+    50% {
+        outline: 8px solid var(--md-sys-color-secondary);
+    }
+
+    100% {}
+}
+
+@keyframes ripple {
+    from {
+        width: 1px;
+        height: 1px;
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    to {
+        width: 150px;
+        height: 300px;
+        background-color: rgba(85, 90, 146, 0.12);
+    }
+}
+
+.outlinedbutton_container {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    width: var(--button-width, auto);
+}
+
+.outlinedbutton {
+    position: relative;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    background-color: var(--md-sys-color-surface);
+    border: 1px solid var(--md-sys-color-outline);
+    border-radius: 1.25rem;
+    height: 2.5rem;
+    width: 100%;
+    padding: 0 1.5rem;
+    transition: background-color 0.2s cubic-bezier(0, 0, 0, 1), box-shadow 0.2s cubic-bezier(0, 0, 0, 1);
+    overflow: hidden;
+}
+
+.outlinedbutton__icon {
+    padding-left: 1rem;
+    padding-right: 1.5rem;
+}
+
+.outlinedbutton:hover {
+    box-shadow:
+        rgba(0, 0, 0, 0.2) 0px 2px 1px -1px,
+        rgba(0, 0, 0, 0.14) 0px 1px 1px 0px,
+        rgba(0, 0, 0, 0.12) 0px 1px 3px 0px;
+    background-color: rgba(85, 90, 146, 0.08);
+
+}
+
+.outlinedbutton:focus-visible {
+    outline-offset: 2px;
+    outline: 3px solid var(--md-sys-color-secondary);
+    border-radius: 1.5625rem;
+    animation: focus-ring 0.4s cubic-bezier(0, 0, 0, 1);
+}
+
+.outlinedbutton:active {
+    box-shadow: none;
+    background-color: rgba(85, 90, 146, 0.12);
+}
+
+.outlinedbutton:active::before {
+    content: '';
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    border-radius: 25%;
+    animation: ripple 0.2s cubic-bezier(0, 0, 0, 1);
+    pointer-events: none;
+}
+
+.outlinedbutton_icon {
+    display: flex;
+    width: 1.125rem;
+    height: 1.125rem;
+    color: var(--md-sys-color-primary);
+    align-items: center;
+    justify-content: center;
+    min-width: 1.125rem;
+}
+
+.outlinedbutton_text {
+    font-family: Roboto;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+    color: var(--md-sys-color-primary);
+    letter-spacing: 0.1px;
+}
