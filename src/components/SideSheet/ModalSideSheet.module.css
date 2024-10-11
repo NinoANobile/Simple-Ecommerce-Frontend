@@ -1,0 +1,198 @@
+/* ESTO ES PARA MANEJAR OPEN CON REACT */
+/* @keyframes focus-ring {
+    0% {}
+
+    50% {
+        outline: 8px solid var(--md-sys-color-secondary);
+    }
+
+    100% {}
+}
+
+.sideSheet_backdrop {
+    opacity: 1;
+    visibility: visible;
+    --_md-ref-palette-neutral-variant20: 47, 48, 56;
+    background-color: rgba(var(--_md-ref-palette-neutral-variant20), 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    z-index: 1000;
+    transition: all 300ms ease-in-out allow-discrete;
+}
+
+.sideSheet_backdrop.sideSheet_backdrop__hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+dialog[open] {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+dialog {
+    opacity: 0;
+    transform: translateX(100%);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: auto;
+    width: 16rem;
+    height: 100vh;
+    max-height: 100vh;
+    background-color: var(--md-sys-color-surface-container-low);
+    border: 0;
+    border-radius: 1rem;
+    transition: all 300ms ease-in-out allow-discrete;
+    z-index: 1001;
+}
+
+@starting-style {
+    dialog[open] {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+.sideSheet_header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 1.5rem 0 1.5rem;
+}
+
+.sideSheet_headline {
+    color: var(--md-sys-color-on-surface-variant);
+    line-height: 1.75rem;
+    font-size: 1.375rem;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+.sideSheet_icon {
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.sideSheet_icon:focus-visible {
+    outline-offset: 0px;
+    outline: 3px solid var(--md-sys-color-secondary);
+    border-radius: 2.0625rem;
+    animation: focus-ring 300ms ease-in-out;
+} */
+
+
+
+/* ESTO ES PARA SHOWMODAL */
+@keyframes focus-ring {
+    0% {}
+
+    50% {
+        outline: 8px solid var(--md-sys-color-secondary);
+    }
+
+    100% {}
+}
+
+.modalSideSheet_container::backdrop {
+    background-color: rgb(0 0 0 / 0%);
+    transition: all 300ms ease-in-out allow-discrete;
+}
+
+.modalSideSheet_container[open]::backdrop {
+    --_md-ref-palette-neutral-variant20: 47, 48, 56;
+    background-color: rgba(var(--_md-ref-palette-neutral-variant20), 0.4);
+}
+
+@starting-style {
+    .modalSideSheet_container[open]::backdrop {
+        background-color: rgb(0 0 0 / 0%);
+    }
+}
+
+.modalSideSheet_container[open] {
+    transform: translateX(0);
+    opacity: 1;
+    /* display: block; */
+}
+
+.modalSideSheet_container {
+    opacity: 0;
+    transform: translateX(100%);
+    /* display: none; */
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: auto;
+    max-width: 19rem;
+    padding: 0 1.5rem;
+    height: 100vh;
+    max-height: 100vh;
+    border: none;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(var(--_md-ref-palette-neutral-variant20), 0.4) var(--md-sys-color-surface-container-low);
+
+    background-color: var(--md-sys-color-surface-container-low);
+    border-radius: 1rem 0 0 1rem;
+    transition: all 300ms ease-in-out;
+    z-index: 1001;
+}
+
+@starting-style {
+    .modalSideSheet_container[open] {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+.modalSideSheet_container.vanishing {
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+.sideSheet_header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 0;
+    position: sticky;
+    top: 0;
+    background-color: var(--md-sys-color-surface-container-low);
+    z-index: 10;
+}
+
+.sideSheet_headline {
+    color: var(--md-sys-color-on-surface-variant);
+    line-height: 1.75rem;
+    font-size: 1.375rem;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+.sideSheet_icon {
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.sideSheet_icon:focus-visible {
+    outline-offset: 2px;
+    outline: 3px solid var(--md-sys-color-secondary);
+    border-radius: 0.25rem;
+    animation: focus-ring 300ms ease-in-out;
+}
+
+/* .sideSheet_content {
+    padding: 0 3rem 0 1.5rem;
+} */
+
+/* .sideSheet_content {
+    --_md-ref-palette-neutral-variant20: 47, 48, 56;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(var(--_md-ref-palette-neutral-variant20), 0.4) var(--md-sys-color-surface-container-low);
+} */

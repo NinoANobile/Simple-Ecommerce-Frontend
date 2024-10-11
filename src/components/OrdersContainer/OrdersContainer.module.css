@@ -1,0 +1,11 @@
+.orderHistory_container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: var(--md-sys-color-surface);
+    padding: 1rem;
+    border-radius: 1rem;
+    /* border-radius: 1rem; */
+    margin: 0 1rem 1rem 1rem;
+    /* overflow-x: hidden; */
+}

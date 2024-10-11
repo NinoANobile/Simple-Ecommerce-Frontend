@@ -59,8 +59,10 @@ befor.
 
 .filledbutton__icon {
     padding-left: 1rem;
-    padding-right: 1.5rem;
+    padding-right: 1rem;
+    /* padding-right: 1.5rem; */
 }
+
 
 .filledbutton:hover {
     box-shadow:
@@ -95,16 +97,18 @@ befor.
 
 .filledbutton_icon {
     display: flex;
-    width: 1.125rem;
-    height: 1.125rem;
+    font-size: 1.375rem;
+    /* width: 1.125rem;
+    height: 1.125rem; */
     color: var(--md-sys-color-on-primary);
     align-items: center;
     justify-content: center;
     min-width: 1.125rem;
+    /* padding-right: 1rem; */
 }
 
 .filledbutton_text {
-    font-family: Roboto;
+    /* font-family: Roboto; */
     font-size: 0.875rem;
     font-weight: 500;
     line-height: 1.25rem;

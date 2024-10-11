@@ -1,36 +1,114 @@
 /* OrderCard.module.css */
 
-.orderCard {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
-    background-color: #f9f9f9;
+@keyframes focus-ring {
+    0% {}
+
+    50% {
+        outline: 8px solid var(--md-sys-color-secondary);
+    }
+
+    100% {}
 }
 
-.orderCard h3 {
-    color: #333;
-    font-size: 1.2em;
+.orderCard_container {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid var(--md-sys-color-outline-variant);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    background-color: var(--md-sys-color-surface);
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 1px -1px,
+        rgba(0, 0, 0, 0.14) 0px 1px 1px 0px,
+        rgba(0, 0, 0, 0.12) 0px 1px 3px 0px;
 }
 
-.orderCard p {
-    color: #666;
-    margin: 5px 0;
+/* Estilos para hover */
+@media (hover: hover) {
+    .orderCard_container:hover {
+        background-color: var(--md-sys-color-surface-container-low);
+    }
+
+    .orderCard_container:hover::before {
+        content: '';
+        position: absolute;
+        border-radius: 0.75rem;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        line-height: 1;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(var(--md-sys-color-on-surface-rgb), 0.08);
+    }
 }
 
-.orderCard ul {
-    list-style-type: none;
-    padding: 0;
+/* Estilos para focus-visible */
+
+.orderCard_container:focus-visible {
+    /* background-color: var(--md-sys-color-surface-container-lowest); */
+    border: none;
+    outline-offset: 2px;
+    outline: 3px solid var(--md-sys-color-secondary);
+    border-radius: 0.75rem;
+    animation: focus-ring 300ms ease-in-out;
 }
 
-.orderCard li {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 5px;
+.orderCard_container:focus-visible::before,
+.orderCard_container:active::before {
+    content: '';
+    position: absolute;
+    border-radius: 0.75rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(var(--md-sys-color-on-surface-rgb), 0.1);
 }
 
-.orderCard li:first-child {
-    margin-top: 0;
+/* Estilos para active */
+
+.orderCard_container:active {
+    /* background-color: var(--md-sys-color-surface-container-lowest); */
+    border: 1px solid var(--md-sys-color-outline-variant);
+    box-shadow: none;
+}
+
+.orderCard_left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.orderCard_right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.orderCard_headline {
+    color: var(--md-sys-color-on-surface-variant);
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.15px;
+}
+
+.orderCard_price {
+    color: var(--md-sys-color-on-surface);
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.15px;
+}
+
+.orderCard_items,
+.orderCard_date {
+    color: var(--md-sys-color-on-surface-variant);
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
 }

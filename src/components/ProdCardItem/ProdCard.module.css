@@ -1,0 +1,51 @@
+.carditem_container {
+    width: 18rem;
+    background-color: var(--md-sys-color-surface);
+    border: 1px solid var(--md-sys-color-outline-variant);
+    border-radius: 0.75rem;
+    /* padding: 0 0.25rem; */
+    max-height: 20.5rem;
+}
+
+.carditem_bodymid {
+    display: flex;
+    flex-direction: column;
+}
+
+.carditem_bodytop,
+.carditem_bodymid,
+.carditem_bodybot {
+    padding: 0.5rem;
+}
+
+.carditem_headline {
+    text-decoration: none;
+    font-size: 1.375rem;
+    line-height: 1.75rem;
+    font-weight: 400;
+    letter-spacing: 0px;
+    color: var(--md-sys-color-on-surface-variant);
+}
+
+.carditem_price {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 500;
+    letter-spacing: 0px;
+    color: var(--md-sys-color-on-surface);
+}
+
+.carditem_description {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 0.25px;
+    color: var(--md-sys-color-on-surface-variant);
+}
+
+.carditem_image {
+    height: 10rem;
+    width: 20rem;
+    object-fit: cover;
+    border-radius: 0.75rem;
+}

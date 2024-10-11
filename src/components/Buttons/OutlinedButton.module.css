@@ -75,7 +75,7 @@ befor.
     outline-offset: 2px;
     outline: 3px solid var(--md-sys-color-secondary);
     border-radius: 1.5625rem;
-    animation: focus-ring 0.4s cubic-bezier(0, 0, 0, 1);
+    animation: focus-ring 0.3s ease-in-out;
 }
 
 .outlinedbutton:active {
@@ -104,7 +104,7 @@ befor.
 }
 
 .outlinedbutton_text {
-    font-family: Roboto;
+    /* font-family: Roboto; */
     font-size: 0.875rem;
     font-weight: 500;
     line-height: 1.25rem;

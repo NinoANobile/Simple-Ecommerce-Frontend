@@ -1,0 +1,108 @@
+@keyframes focus-ring {
+    0% {}
+
+    50% {
+        outline: 8px solid var(--md-sys-color-secondary);
+    }
+
+    100% {}
+}
+
+.sideSheet_container.sideSheet_container__open {
+    display: block;
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.sideSheet_container {
+    display: none;
+    grid-area: sideSheet;
+    position: sticky;
+    top: 4rem;
+    max-height: calc(100vh - 4rem);
+    /* background-color: var(--md-sys-color-surface); */
+    background-color: var(--md-sys-color-surface-container);
+    /* width: 16rem; */
+    padding: 0 1.5rem;
+    max-width: 19rem;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(var(--_md-ref-palette-neutral-variant20), 0.4) var(--md-sys-color-surface-container-low);
+
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 300ms ease-in-out allow-discrete;
+    /* border-left: 1px solid var(--md-sys-color-outline); */
+}
+
+@starting-style {
+    .sideSheet_container.sideSheet_container__open {
+        display: block;
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+.sideSheet_header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 0;
+    position: sticky;
+    top: 0;
+    background-color: var(--md-sys-color-surface-container);
+    z-index: 10;
+}
+
+.sideSheet_headline {
+    color: var(--md-sys-color-on-surface-variant);
+    line-height: 1.75rem;
+    font-size: 1.375rem;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+.sideSheet_icon {
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.sideSheet_icon:focus-visible {
+    outline-offset: 2px;
+    outline: 3px solid var(--md-sys-color-secondary);
+    border-radius: 0.25rem;
+    animation: focus-ring 300ms ease-in-out;
+}
+
+/* .sideSheet_content {
+    --_md-ref-palette-neutral-variant20: 47, 48, 56;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(var(--_md-ref-palette-neutral-variant20), 0.4) var(--md-sys-color-surface-container-low);
+} */
+
+/* .sideSheet_container__open {
+    display: block;
+    position: fixed;
+    top: 4rem;
+    right: 0;
+    width: 240px;
+    height: 100%;
+    background-color: white;
+    padding: 1rem;
+    animation: appear 1s;
+} */
+
+/* .sideSheet_container:not(.sideSheet_container__open) {
+    display: none;
+} */
+
+/* @keyframes appear {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+} */

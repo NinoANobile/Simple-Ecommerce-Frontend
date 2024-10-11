@@ -1,13 +1,70 @@
 .topAppBar_container {
     grid-area: topAppBar;
+    position: sticky;
+    top: 0;
+    /* background-color: var(--md-sys-color-surface); */
+    background-color: var(--md-sys-color-surface-container);
+    padding: 0 1rem;
+    transition: background-color 300ms ease-in-out;
+
 }
+
+/* @media (max-width: 699px) {
+    .topAppBar_container.scrolled {
+        background-color: var(--md-sys-color-surface-container);
+    }
+} */
 
 .topAppBar {
     display: flex;
     justify-content: space-between;
+    gap: 1.5rem;
+    align-items: center;
+    height: 4rem;
 }
 
-.topAppBar_left {
+.topAppBar_left,
+.topAppBar_right {
     display: flex;
-    gap: 0.5rem;
+    gap: 1rem;
+    align-items: center;
+}
+
+.title {
+    font-size: 1.375rem;
+    line-height: 1.75rem;
+    font-weight: 400;
+    letter-spacing: 0px;
+    color: var(--md-sys-color-on-surface)
+}
+
+.logoImage {
+    height: 4rem;
+    object-fit: contain;
+}
+
+.iconButtonRight {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.5rem;
+    width: 2.5rem;
+    color: var(--md-sys-color-on-surface);
+    cursor: pointer;
+    background: none;
+    border: none;
+
+}
+
+.iconButtonLeft {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.5rem;
+    width: 2.5rem;
+    color: var(--md-sys-color-on-surface-variant);
+    cursor: pointer;
+    background: none;
+    border: none;
+
 }

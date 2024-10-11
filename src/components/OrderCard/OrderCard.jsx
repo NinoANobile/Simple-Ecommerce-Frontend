@@ -1,28 +1,41 @@
 import styles from "./OrderCard.module.css";
+import { OrderDetail } from "../index";
+import { useState } from "react";
 
-const OrderCard = ({ order }) => {
+const OrderCard = ({
+  order,
+  // cardOnClick
+}) => {
+  const [showOrderDetail, setShowOrderDetail] = useState(false);
+
   const orderDetails = order.OrderDetails || [];
 
+  const handleShowOrderDetail = () => {
+    // setSelectedOrder(order);
+    setShowOrderDetail(!showOrderDetail);
+  };
+
   return (
-    <div className={styles.orderCard}>
-      <h3>Orden ID: {order.id}</h3>
-      <p>Estatus: {order.orderStatus}</p>
-      <p>Método de Pago: {order.paymentMethod}</p>
-      <p>Método de Envío: {order.shippingMethod}</p>
-      <p>Total: ${order.totalAmount}</p>
-      <p>Notas: {order.notes || "Ninguna"}</p>
-      <div>
-        Detalles de la Orden:
-        <ul>
-          {orderDetails.map((detail) => (
-            <li key={detail.id}>
-              Producto ID: {detail.productId}, Cantidad: {detail.quantity},
-              Precio: ${detail.price}
-            </li>
-          ))}
-        </ul>
+    <>
+      <div
+        className={styles.orderCard_container}
+        onClick={handleShowOrderDetail}
+        tabIndex={0}
+      >
+        <div className={styles.orderCard_left}>
+          <h2 className={styles.orderCard_headline}>Pedido: {order.id}</h2>
+          <p className={styles.orderCard_date}>
+            Realizado el {order.createdAt}
+          </p>
+          <p className={styles.orderCard_price}>Total: ${order.totalAmount}</p>
+        </div>
+        <div className={styles.orderCard_right}>
+          <p>{order.orderStatus}</p>
+          <p className={styles.orderCard_items}>{orderDetails.length} items</p>
+        </div>
       </div>
-    </div>
+      {showOrderDetail && <OrderDetail order={order} />}
+    </>
   );
 };
 

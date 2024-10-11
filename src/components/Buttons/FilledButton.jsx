@@ -27,9 +27,15 @@ const FilledButton = ({
         role="button"
       >
         {buttonIcon && (
-          <span className={`${styles.filledbutton_icon} ${buttonIcon}`}></span>
+          <span
+            className={`${styles.filledbutton_icon} ${buttonIcon} material-symbols-rounded`}
+          >
+            {buttonIcon}
+          </span>
         )}
-        <span className={`${styles.filledbutton_text}`}> {buttonText}</span>
+        {buttonText && (
+          <span className={`${styles.filledbutton_text}`}> {buttonText}</span>
+        )}
       </button>
     </div>
   );

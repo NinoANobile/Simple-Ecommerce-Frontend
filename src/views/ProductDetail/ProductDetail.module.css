@@ -1,0 +1,26 @@
+.productDetail_container {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: minmax(auto, 22.5rem) minmax(28.875rem, 3fr) minmax(auto, 1fr);
+    grid-template-rows: 4rem auto;
+    grid-template-areas:
+        "topAppBar topAppBar topAppBar"
+        "main main main";
+    background-color: var(--md-sys-color-surface-container);
+}
+
+/* @media (min-width: 700px) {
+    .productDetail_container {
+        grid-template-columns: 1fr 3fr 1fr;
+        grid-template-areas:
+            "topAppBar topAppBar topAppBar"
+            "main main drawer ";
+    }
+} */
+
+.productDetail {
+    grid-area: main;
+    max-width: 55rem;
+    justify-self: center;
+    width: 100%;
+}

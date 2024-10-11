@@ -1,4 +1,6 @@
 .main {
-    display: flex;
-    flex-direction: column;
+    display: block;
+    position: relative;
+    min-height: 100vh;
+    background-color: var(--md-sys-color-surface-container-high);
 }

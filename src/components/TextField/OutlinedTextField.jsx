@@ -40,7 +40,8 @@ const OutlinedTextField = ({
     return () => {
       if (timeoutId) clearTimeout(timeoutId);
     };
-  }, []);
+  }, [inputLabel]);
+  // }, [inputLabel, inputValue]); Esto pareceria ser lo correcto pero no quiero que se actualice cuando cambie el inputValue.
 
   return (
     <div

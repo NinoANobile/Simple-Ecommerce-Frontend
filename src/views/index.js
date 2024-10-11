@@ -10,6 +10,14 @@ import ProductDetail from "./ProductDetail/ProductDetail";
 import Thanks from "./Thanks/Thanks";
 import Orders from "./Orders/Orders";
 import LoadProduct from "./LoadProduct/LoadProduct";
+import OrderHistory from "./OrderHistory/OrderHistory";
+import EditProduct from "./EditProduct/EditProduct";
+import VendorRegister from "./VendorRegister/VendorRegister";
+import NotFound from "./NotFound/NotFound";
+import VerifyEmail from "./VerifyEmail/VerifyEmail";
+import PreVerifyEmail from "./PreVerifyEmail/PreVerifyEmail";
+import ForgotPassword from "./ForgotPassword/ForgotPassword";
+import ResetPassword from "./ResetPassword/ResetPassword";
 
 export {
   Home,
@@ -24,4 +32,12 @@ export {
   Thanks,
   Orders,
   LoadProduct,
+  OrderHistory,
+  EditProduct,
+  VendorRegister,
+  NotFound,
+  VerifyEmail,
+  PreVerifyEmail,
+  ForgotPassword,
+  ResetPassword,
 };

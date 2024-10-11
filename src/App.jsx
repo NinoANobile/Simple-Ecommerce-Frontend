@@ -1,5 +1,7 @@
 import styles from "./App.module.css";
-import { Routes, Route, useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { Routes, Route } from "react-router-dom";
 import {
   Home,
   Register,
@@ -9,29 +11,65 @@ import {
   Thanks,
   Orders,
   LoadProduct,
-} from "./views/index"; // Usar exportación con nombre
-import { store, persistor } from "./redux/store"; // tus configuracion
+  OrderHistory,
+  EditProduct,
+  VendorRegister,
+  NotFound,
+  VerifyEmail,
+  PreVerifyEmail,
+  ForgotPassword,
+  ResetPassword,
+} from "./views/index";
+import { fetchProducts } from "./app/features/products/productsSlice";
+import { clearToken } from "./app/features/auth/authSlice";
+import { persistor } from "./app/store"; // Importa el persistor
+import PrivateRoute from "./guards/PrivateRoute";
+import InviteRoute from "./guards/InviteRoute";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
+
   const handleClearState = () => {
     persistor.purge();
   };
-  let { prodId } = useParams();
+
+  const handleClearToken = () => {
+    dispatch(clearToken());
+  };
+
   return (
     <div className={`${styles.main}`}>
-      <button onClick={handleClearState}>Clear State</button>
       <Routes>
-        <Route path="/" element={<Home />} />
-        {/* <Route path="/shop" element={<Shop />} /> */}
-        <Route path="/cart" element={<Cart />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        {/* <Route path="/contact" element={<Contact />} /> */}
-        <Route path="/thanks" element={<Thanks />} />
-        <Route path="/orders" element={<Orders />} />
-        <Route path="/loadproduct" element={<LoadProduct />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/proddetail/:id" element={<ProductDetail />} />
+        <Route path="/passrecovery" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+
+        {/* Ruta protegida para el registro de vendedores */}
+        <Route element={<InviteRoute />}>
+          <Route path="/register-vendedor" element={<VendorRegister />} />
+        </Route>
+
+        {/* Rutas privadas existentes */}
+        <Route element={<PrivateRoute />}>
+          <Route path="/thanks" element={<Thanks />} />
+          <Route path="/history" element={<OrderHistory />} />
+          <Route path="/loadproduct" element={<LoadProduct />} />
+          <Route path="/editproduct/:id" element={<EditProduct />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/pre-verify-email" element={<PreVerifyEmail />} />
+          <Route path="/verify-email" element={<VerifyEmail />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
+      <button onClick={handleClearToken}>Borrar Token</button>
+      <button onClick={handleClearState}>Clear State</button>
     </div>
   );
 }

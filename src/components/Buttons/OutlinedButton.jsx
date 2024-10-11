@@ -28,8 +28,10 @@ const OutlinedButton = ({
       >
         {buttonIcon && (
           <span
-            className={`${styles.outlinedbutton_icon} ${buttonIcon}`}
-          ></span>
+            className={`${styles.outlinedbutton_icon} ${buttonIcon} material-symbols-rounded`}
+          >
+            {buttonIcon}
+          </span>
         )}
         <span className={styles.outlinedbutton_text}>{buttonText}</span>
       </button>

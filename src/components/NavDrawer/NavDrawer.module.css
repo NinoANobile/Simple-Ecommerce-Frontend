@@ -1,25 +1,14 @@
-.navDrawer_container__permanent {
-    grid-area: drawer;
+@keyframes focus-ring {
+    0% {}
+
+    50% {
+        outline: 8px solid var(--md-sys-color-secondary);
+    }
+
+    100% {}
 }
 
-.navDrawer_container__open {
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 240px;
-    height: 100%;
-    background-color: white;
-    padding: 1rem;
-    animation: appear 1s;
-}
-
-/* Estilos para ocultar el drawer en modo modal */
-.navDrawer_container:not(.navDrawer_container__open) {
-    display: none;
-}
-
-@keyframes appear {
+/* @keyframes appear {
     from {
         opacity: 0;
     }
@@ -27,4 +16,254 @@
     to {
         opacity: 1;
     }
+}
+
+@keyframes vanish {
+    from {
+        display: block;
+        opacity: 1;
+    }
+
+    to {
+        display: none;
+        opacity: 0;
+    }
+} */
+
+.navDrawer_backdrop {
+    opacity: 1;
+    visibility: visible;
+    --_md-ref-palette-neutral-variant20: 47, 48, 56;
+    background-color: rgba(var(--_md-ref-palette-neutral-variant20), 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /* Debe estar justo debajo del menú modal */
+    z-index: 1000;
+    transition: all 300ms ease-in-out allow-discrete;
+}
+
+.navDrawer_backdrop.navDrawer_backdrop__hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* position: fixed;
+    top: 0;
+    left: 0; */
+/* height: 100%; */
+/* position: sticky;
+    top: 0; */
+
+.navDrawer_containerFixed {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    grid-area: drawer;
+    width: 22.5rem;
+    /* background-color: var(--md-sys-color-surface); */
+    background-color: var(--md-sys-color-surface-container);
+    padding: 0 0.75rem;
+
+    display: none;
+    opacity: 0;
+    transform: translateX(-100%);
+    /* animation: vanish 1s; */
+    /* transition-property: all;
+    transition-duration: 300ms;
+    transition-behavior: allow-discrete;
+    transition-timing-function: ease-in-out; */
+}
+
+.navDrawer_container__visible {
+    display: block;
+    /* animation: appear 1s; */
+    opacity: 1;
+    transform: translateX(0);
+
+    @starting-style {
+
+        opacity: 0;
+        transform: translateX(-100%);
+
+    }
+}
+
+.navDrawer_containerModal.navDrawer_container__open {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.navDrawer_containerModal {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(-100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 22.5rem;
+    height: 100%;
+    background-color: var(--md-sys-color-surface-container-low);
+    border-radius: 1rem;
+    padding: 0 0.75rem;
+    z-index: 1001;
+
+    transition-property: all;
+    transition-duration: 300ms;
+    transition-behavior: allow-discrete;
+    transition-timing-function: ease-in-out;
+}
+
+@starting-style {
+    .navDrawer_containerModal.navDrawer_container__open {
+        visibility: visible;
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.navDrawer_headline {
+    height: 4rem;
+    object-fit: contain;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 3.5rem;
+    /* width: 21rem; */
+    padding: 0 1rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 0.1px;
+}
+
+li {
+    list-style: none;
+}
+
+.navDrawer_indicator {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    height: 3.5rem;
+    width: 21rem;
+    padding: 0 1rem;
+    border-radius: 1.75rem;
+
+    text-decoration: none;
+}
+
+.navDrawer_indicator__active {
+    background-color: var(--md-sys-color-secondary-container);
+}
+
+.navDrawer_icon {
+    color: var(--md-sys-color-on-surface-variant);
+}
+
+.navDrawer_icon__active {
+    color: var(--md-sys-color-on-secondary-container);
+}
+
+.navDrawer_labelText {
+    text-decoration: none;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 0.1px;
+    color: var(--md-sys-color-on-surface-variant);
+    outline: none;
+}
+
+.navDrawer_labelText__active {
+    font-weight: 700;
+    color: var(--md-sys-color-on-secondary-container);
+}
+
+@media (hover: hover) {
+
+    .navDrawer_indicator:hover .navDrawer_labelText,
+    .navDrawer_indicator:hover .navDrawer_icon {
+        color: var(--md-sys-color-on-surface)
+    }
+
+    .navDrawer_indicator:hover .navDrawer_labelText__active,
+    .navDrawer_indicator:hover .navDrawer_icon__active {
+        color: var(--md-sys-color-on-secondary-container)
+    }
+
+    .navDrawer_indicator__active:hover::before {
+        content: '';
+        position: absolute;
+        height: 3.5rem;
+        width: 21rem;
+        border-radius: 1.75rem;
+        top: 0;
+        left: 0;
+        background-color: rgba(var(--md-sys-color-on-secondary-container-rgb), 0.08);
+        pointer-events: none;
+        /* z-index: 1; */
+    }
+
+    .navDrawer_indicator:hover::before {
+        content: '';
+        position: absolute;
+        height: 3.5rem;
+        width: 21rem;
+        border-radius: 1.75rem;
+        top: 0;
+        left: 0;
+        background-color: rgba(var(--md-sys-color-on-surface-rgb), 0.08);
+        pointer-events: none;
+        /* z-index: 1; */
+    }
+}
+
+/* Estilos para focus-visible */
+.navDrawer_indicator:focus-visible {
+    outline-offset: 0px;
+    outline: 3px solid var(--md-sys-color-secondary);
+    border-radius: 2.0625rem;
+    animation: focus-ring 300ms ease-in-out;
+}
+
+.navDrawer_indicator__active:focus-visible::before,
+.navDrawer_indicator__active:active::before,
+.navDrawer_indicator:active::before,
+.navDrawer_indicator:focus-visible::before {
+    content: '';
+    position: absolute;
+    height: 3.5rem;
+    width: 21rem;
+    border-radius: 1.75rem;
+    top: 0;
+    left: 0;
+    background-color: rgba(var(--md-sys-color-on-secondary-container-rgb), 0.1);
+    pointer-events: none;
+}
+
+.navDrawer_indicator:focus-visible::before {
+    background-color: rgba(var(--md-sys-color-on-surface-rgb), 0.1);
+}
+
+/* Estilos para active/ripple/pressed */
+
+.navDrawer_indicator:focus-visible .navDrawer_labelText,
+.navDrawer_indicator:focus-visible .navDrawer_icon,
+.navDrawer_indicator:active .navDrawer_labelText,
+.navDrawer_indicator:active .navDrawer_icon {
+    color: var(--md-sys-color-on-surface);
+}
+
+.navDrawer_indicator__active:focus-visible .navDrawer_labelText,
+.navDrawer_indicator__active:focus-visible .navDrawer_icon,
+.navDrawer_indicator__active:active .navDrawer_labelText,
+.navDrawer_indicator__active:active .navDrawer_icon {
+    color: var(--md-sys-color-on-secondary-container);
 }

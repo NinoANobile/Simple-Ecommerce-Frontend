@@ -1,0 +1,90 @@
+.thanks_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--md-sys-color-surface-container-high);
+    padding: 1rem;
+    margin: 0 1rem 1rem 1rem;
+    height: 100vh;
+}
+
+.thanks {
+    background-color: var(--md-sys-color-surface);
+    /* background-color: var(--md-sys-color-surface-container-lowest); */
+
+    /* padding-bottom: 1rem; */
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+.thanks_headline {
+    font-size: 2.25rem;
+    line-height: 2.75rem;
+    letter-spacing: 0px;
+    font-weight: 600;
+    padding: 1rem;
+    text-align: center;
+    color: var(--md-sys-color-primary);
+}
+
+.thanks_top {
+    display: flex;
+    background-color: var(--md-sys-color-primary-container);
+    /* background-color: var(--md-sys-color-surface-variant); */
+    /* background-color: var(--md-sys-color-surface-container-low); */
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+}
+
+.thanks_topKeys {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-right: 1rem;
+    color: var(--md-sys-color-on-surface-variant);
+    color: var(--md-sys-color-on-primary-container);
+}
+
+.thanks_topValues {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-left: 1rem;
+
+    /* color: var(--md-sys-color-primary); */
+    color: var(--md-sys-color-on-primary-container);
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    letter-spacing: 0px;
+    font-weight: 600;
+}
+
+.thanks_mid,
+.thanks_bot {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--md-sys-color-surface-container);
+    /* background-color: var(--md-sys-color-tertiary-container); */
+    padding: 1rem;
+    border-radius: 1rem;
+    color: var(--md-sys-color-on-secondary-container);
+}
+
+.thanks_mid {
+    margin-bottom: 1rem;
+}
+
+.thanks_prodContainer {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.thanks_buttonContainer {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    justify-content: space-evenly;
+}

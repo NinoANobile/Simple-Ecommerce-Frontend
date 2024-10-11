@@ -1,7 +1,31 @@
 .orderForm_container {
+    min-width: calc(28.875rem - 2rem);
+    /* width: calc(100vw - 2rem); */
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    justify-content: space-between;
+    background-color: var(--md-sys-color-surface);
+    border-radius: 1rem;
+    /* border-radius: 1rem; */
+    margin: 0 1rem 1rem 1rem;
+    padding: 1rem;
+}
+
+@media (min-width: 839px) {
+    .orderForm_container {
+        min-width: calc(28.875rem - 2rem);
+        /* width: calc(100vw - 25.5rem); */
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        justify-content: space-between;
+        background-color: var(--md-sys-color-surface);
+        border-radius: 1rem;
+        /* border-radius: 1rem; */
+        margin: 0 1rem 1rem 1rem;
+        padding: 1rem;
+    }
 }
 
 .orderForm_shippingMethod,
@@ -15,7 +39,7 @@
     display: grid;
     gap: 1rem;
     grid-template-columns: repeat(5, 1fr);
-    max-width: 30rem;
+    /* max-width: 30rem; */
     align-self: center;
 }
 
@@ -29,4 +53,10 @@
 
 .grid_col_span_5 {
     grid-column: span 5;
+}
+
+.orderForm_buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
 }

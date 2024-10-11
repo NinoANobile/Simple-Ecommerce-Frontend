@@ -1,0 +1,152 @@
+.checkbox_container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.filter_checkbox {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    appearance: none;
+    position: relative;
+    border: 2px solid var(--md-sys-color-on-surface-variant);
+    border-radius: 2px;
+}
+
+@media (hover: hover) {
+
+    .filter_checkbox:hover {
+        border-color: var(--md-sys-color-on-surface);
+    }
+
+    .filter_checkbox:hover::after {
+        content: '';
+        position: absolute;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        line-height: 1;
+        height: 2.5rem;
+        width: 2.5rem;
+        background-color: rgba(var(--md-sys-color-on-surface-rgb), 0.08);
+        pointer-events: none;
+    }
+
+    .filter_checkbox:checked:hover::after,
+    .filter_checkbox:indeterminate:hover::after {
+        content: '';
+        position: absolute;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        line-height: 1;
+        height: 2.5rem;
+        width: 2.5rem;
+        background-color: rgba(var(--md-sys-color-primary-rgb), 0.08);
+        pointer-events: none;
+    }
+
+    .filter_checkbox:disabled:hover::after {
+        background-color: transparent;
+    }
+
+}
+
+/* Estado disabled */
+.filter_checkbox:disabled {
+    border-color: rgba(var(--md-sys-color-on-surface-rgb), 0.38);
+}
+
+/* Estado checked */
+.filter_checkbox:checked {
+    background-color: var(--md-sys-color-primary);
+    border-color: var(--md-sys-color-primary);
+}
+
+.filter_checkbox:checked::before {
+    content: 'check';
+    font-family: 'Material Symbols Rounded';
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--md-sys-color-surface);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1;
+}
+
+/* Estado indeterminado */
+.filter_checkbox:indeterminate {
+    background-color: var(--md-sys-color-primary);
+    border-color: var(--md-sys-color-primary);
+}
+
+.filter_checkbox:indeterminate::before {
+    content: 'check_indeterminate_small';
+    font-family: 'Material Symbols Rounded';
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--md-sys-color-surface);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1;
+}
+
+/* Estilos para focus-visible */
+
+.filter_checkbox:focus-visible {
+    outline: none;
+}
+
+.filter_checkbox:focus-visible::after,
+.filter_checkbox:checked:focus-visible::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 50%;
+    background-color: rgba(var(--md-sys-color-on-surface-rgb), 0.1);
+    pointer-events: none;
+}
+
+.filter_checkbox:checked:focus-visible::after,
+.filter_checkbox:indeterminate:focus-visible::after {
+    background-color: rgba(var(--md-sys-color-primary-rgb), 0.1);
+}
+
+/* Estilos para active */
+
+.filter_checkbox:active::after,
+.filter_checkbox:checked:active::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 50%;
+    background-color: rgba(var(--md-sys-color-on-surface-rgb), 0.1);
+    pointer-events: none;
+}
+
+.filter_checkbox:checked:active::after,
+.filter_checkbox:indeterminate:active::after {
+    background-color: rgba(var(--md-sys-color-primary-rgb), 0.1);
+}
+
+label {
+    color: var(--md-sys-color-on-surface);
+    cursor: pointer;
+}
