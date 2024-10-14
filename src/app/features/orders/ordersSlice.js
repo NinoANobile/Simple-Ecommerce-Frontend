@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const initialState = {
   byId: {},
@@ -14,7 +15,7 @@ export const fetchOrders = createAsyncThunk(
   async (_, { rejectWithValue, getState }) => {
     try {
       const token = getState().auth.token;
-      const response = await axios.get("http://localhost:3000/orders", {
+      const response = await axios.get(`${apiUrl}/orders`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -31,7 +32,7 @@ export const fetchOrderHistory = createAsyncThunk(
     try {
       const token = getState().auth.token;
       const response = await axios.get(
-        `http://localhost:3000/orders/history?userId=${userId}`,
+        `${apiUrl}/orders/history?userId=${userId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -50,15 +51,11 @@ export const createOrder = createAsyncThunk(
     try {
       const token = getState().auth.token;
 
-      const response = await axios.post(
-        "http://localhost:3000/orders",
-        orderData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await axios.post(`${apiUrl}/orders`, orderData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       return response.data;
     } catch (error) {
@@ -72,7 +69,7 @@ export const checkStock = createAsyncThunk(
     try {
       const token = getState().auth.token;
       const response = await axios.post(
-        "http://localhost:3000/orders/check-stock",
+        `${apiUrl}/orders/check-stock`,
         { orderDetails },
         {
           headers: {
@@ -98,7 +95,7 @@ export const fetchLastOrder = createAsyncThunk(
       }
 
       const response = await axios.get(
-        `http://localhost:3000/orders/lastOrder?userId=${userId}`,
+        `${apiUrl}/orders/lastOrder?userId=${userId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`, // Enviar el token en los headers

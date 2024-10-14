@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const initialState = {
   byId: {},
@@ -14,32 +15,13 @@ export const registerUser = createAsyncThunk(
   "users/registerUser",
   async (userData, { rejectWithValue }) => {
     try {
-      const response = await axios.post(
-        "http://localhost:3000/users",
-        userData
-      );
+      const response = await axios.post(`${apiUrl}/users`, userData);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || error.message);
     }
   }
 );
-
-// export const deleteAccount = createAsyncThunk(
-//   "users/deleteAccount",
-//   async ({ userId, role }, { rejectWithValue }) => {
-//     try {
-//       await axios({
-//         method: "delete",
-//         url: `http://localhost:3000/users/delete/${userId}`,
-//         data: { role },
-//       });
-//       return userId;
-//     } catch (error) {
-//       return rejectWithValue(error.response?.data?.message || error.message);
-//     }
-//   }
-// );
 
 export const deleteAccount = createAsyncThunk(
   "users/deleteAccount",
@@ -52,7 +34,7 @@ export const deleteAccount = createAsyncThunk(
       // Realizar la solicitud con el token en el encabezado Authorization
       await axios({
         method: "delete",
-        url: `http://localhost:3000/users/delete/${userId}`,
+        url: `${apiUrl}/users/delete/${userId}`,
         headers: {
           Authorization: `Bearer ${token}`, // Incluye el token en el encabezado
         },

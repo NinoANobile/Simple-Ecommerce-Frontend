@@ -4,6 +4,7 @@ import {
   FilledButton,
   Dialog,
   Spinner,
+  TextButton,
 } from "../../components/index";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -106,12 +107,13 @@ const ResetPassword = () => {
 
   const handleCloseSuccessDialog = () => {
     setShowSuccessDialog(false);
+    dispatch(clearAuthError());
     navigate("/login"); // Redirigir al login al cerrar el diálogo de éxito
   };
 
   const handleCloseErrorDialog = () => {
     setShowErrorDialog(false); // Cerrar el diálogo de error
-    dispatch(clearAuthError);
+    dispatch(clearAuthError());
   };
 
   if (loading) return <Spinner></Spinner>;
@@ -152,10 +154,10 @@ const ResetPassword = () => {
           title="Contraseña restablecida"
           content="Tu contraseña ha sido restablecida correctamente. Ahora puedes iniciar sesión con tu nueva contraseña."
           actions={
-            <FilledButton
-              buttonType="button"
-              buttonText="Ir al login"
-              buttonOnClick={handleCloseSuccessDialog}
+            <TextButton
+              text="Ir al login"
+              icon="login"
+              onClick={handleCloseSuccessDialog}
             />
           }
         />
@@ -168,10 +170,10 @@ const ResetPassword = () => {
           title="Error"
           content={error || "Hubo un error al restablecer tu contraseña."}
           actions={
-            <FilledButton
-              buttonType="button"
-              buttonText="Cerrar"
-              buttonOnClick={handleCloseErrorDialog}
+            <TextButton
+              text="Cerrar"
+              icon="close"
+              onClick={handleCloseErrorDialog}
             />
           }
         />

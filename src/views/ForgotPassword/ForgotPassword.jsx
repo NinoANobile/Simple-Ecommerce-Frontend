@@ -79,14 +79,12 @@ const ForgotPassword = () => {
     }
   };
 
-  const handleCloseDialog = () => {
+  const handleCloseDialog = (event) => {
     setShowDialog(false);
     dispatch(clearAuthError());
-  };
-
-  const handleCloseSuccessDialog = () => {
-    setShowSuccessDialog(false);
-    navigate("/"); // Redirigir al home
+    if (event.target.name === "home") {
+      navigate("/");
+    }
   };
 
   if (loading) return <Spinner></Spinner>;
@@ -119,15 +117,17 @@ const ForgotPassword = () => {
           content="El correo de recuperación ha sido enviado con éxito. Revisa tu bandeja de entrada para continuar."
           actions={
             <>
-              <FilledButton
-                buttonType="button"
-                buttonText="Ir al home"
-                buttonOnClick={handleCloseSuccessDialog}
+              <TextButton
+                name="home"
+                text="Ir al home"
+                icon="home"
+                onClick={handleCloseDialog}
               />
-              <FilledButton
-                buttonType="button"
-                buttonText="Cerrar"
-                buttonOnClick={handleCloseSuccessDialog}
+              <TextButton
+                name="close"
+                text="Cerrar"
+                icon="close"
+                onClick={handleCloseDialog}
               />
             </>
           }
@@ -143,11 +143,13 @@ const ForgotPassword = () => {
           actions={
             <>
               <TextButton
+                name="home"
                 text="Home"
                 icon="home"
-                onClick={() => navigate("/")}
+                onClick={handleCloseDialog}
               ></TextButton>
               <TextButton
+                name="close"
                 text="Cerrar"
                 icon="close"
                 onClick={handleCloseDialog}

@@ -1,5 +1,10 @@
 import styles from "./OrderForm.module.css";
-import { FilledButton, OutlinedButton, OutlinedTextField } from "../index";
+import {
+  FilledButton,
+  OutlinedButton,
+  OutlinedTextField,
+  Spinner,
+} from "../index";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -107,101 +112,158 @@ export const OrderForm = (props) => {
     validate({ ...orderForm, [property]: value }, setErrors, errors, property);
   };
 
+  // HANDLER PARA LA VERSION DE PRUEBA
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (
-      (Object.values(errors).filter((value) => value !== "").length === 0 &&
-        Object.values(orderForm).filter((value) => value !== "").length !==
-          0) ||
-      (shippingMethod === "pickup" && paymentMethod === "person")
-    ) {
-      // Preparación de los datos de la orden
-      const orderDetails = Object.entries(cart.items).map(
-        ([productId, item]) => ({
-          productId,
-          quantity: item.quantity,
-        })
-      );
+    // Preparación de los datos de la orden
+    const orderDetails = Object.entries(cart.items).map(
+      ([productId, item]) => ({
+        productId,
+        quantity: item.quantity,
+      })
+    );
 
-      try {
-        // Despachamos checkStock antes de crear la orden
-        console.log("Checking stock with data:", orderDetails);
-        const stockResult = await dispatch(checkStock(orderDetails)).unwrap();
-        console.log("Stock check result:", stockResult);
+    try {
+      // Despachamos checkStock antes de crear la orden
+      console.log("Checking stock with data:", orderDetails);
+      const stockResult = await dispatch(checkStock(orderDetails)).unwrap();
+      console.log("Stock check result:", stockResult);
 
-        // Si el stock es suficiente, creamos la orden
-        const orderData = {
-          order: {
-            userId,
-            paymentReference: `ref${Date.now()}`,
-            phone: "123-456-7890",
-            orderStatus: "pending",
-            paymentMethod,
-            shippingMethod,
-            notes: "Leave at front door",
-            totalAmount: cart.totalAmount,
-          },
-          orderDetails,
-        };
+      // Si el stock es suficiente, creamos la orden
+      const orderData = {
+        order: {
+          userId,
+          paymentReference: `ref${Date.now()}`,
+          phone: "123-456-7890",
+          orderStatus: "pending",
+          paymentMethod,
+          shippingMethod,
+          notes: "Leave at front door",
+          totalAmount: cart.totalAmount,
+        },
+        orderDetails,
+      };
 
-        console.log("Dispatching createOrder with data:", orderData);
+      console.log("Dispatching createOrder with data:", orderData);
 
-        // Despachamos createOrder
-        const result = await dispatch(createOrder(orderData)).unwrap();
-        console.log("createOrder result:", result);
+      // Despachamos createOrder
+      const result = await dispatch(createOrder(orderData)).unwrap();
+      console.log("createOrder result:", result);
 
-        // Limpiar el carrito solo si createOrder fue exitoso
-        console.log("Dispatching clearCart");
-        dispatch(clearShoppingCart());
+      // Limpiar el carrito solo si createOrder fue exitoso
+      console.log("Dispatching clearCart");
+      dispatch(clearShoppingCart());
 
-        // Navegar a la página de "gracias"
-        console.log("Navigating to /thanks");
-        navigate("/thanks", { state: { fromPurchase: true } });
-      } catch (error) {
-        // Si checkStock o createOrder fallan, mostramos el error
-        console.error("Error en el proceso de la orden:", error);
-        setGeneralError(error); // Aquí muestras el error en el formulario
-      }
-    } else {
-      setGeneralError(
-        "Por favor, corrija los errores en el formulario antes de continuar."
-      );
+      // Navegar a la página de "gracias"
+      console.log("Navigating to /thanks");
+      navigate("/thanks", { state: { fromPurchase: true } });
+    } catch (error) {
+      // Si checkStock o createOrder fallan, mostramos el error
+      console.error("Error en el proceso de la orden:", error);
+      setGeneralError(error); // Aquí muestras el error en el formulario
     }
   };
+
+  // ESTE ES EL HANDLER QUE VALIDA LOS CAMPOS EN LSO FORMULARIOS PARA EL ENVIO Y METODO DE PAGO
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+
+  //   if (
+  //     (Object.values(errors).filter((value) => value !== "").length === 0 &&
+  //       Object.values(orderForm).filter((value) => value !== "").length !==
+  //         0) ||
+  //     (shippingMethod === "pickup" && paymentMethod === "person")
+  //   ) {
+  //     // Preparación de los datos de la orden
+  //     const orderDetails = Object.entries(cart.items).map(
+  //       ([productId, item]) => ({
+  //         productId,
+  //         quantity: item.quantity,
+  //       })
+  //     );
+
+  //     try {
+  //       // Despachamos checkStock antes de crear la orden
+  //       console.log("Checking stock with data:", orderDetails);
+  //       const stockResult = await dispatch(checkStock(orderDetails)).unwrap();
+  //       console.log("Stock check result:", stockResult);
+
+  //       // Si el stock es suficiente, creamos la orden
+  //       const orderData = {
+  //         order: {
+  //           userId,
+  //           paymentReference: `ref${Date.now()}`,
+  //           phone: "123-456-7890",
+  //           orderStatus: "pending",
+  //           paymentMethod,
+  //           shippingMethod,
+  //           notes: "Leave at front door",
+  //           totalAmount: cart.totalAmount,
+  //         },
+  //         orderDetails,
+  //       };
+
+  //       console.log("Dispatching createOrder with data:", orderData);
+
+  //       // Despachamos createOrder
+  //       const result = await dispatch(createOrder(orderData)).unwrap();
+  //       console.log("createOrder result:", result);
+
+  //       // Limpiar el carrito solo si createOrder fue exitoso
+  //       console.log("Dispatching clearCart");
+  //       dispatch(clearShoppingCart());
+
+  //       // Navegar a la página de "gracias"
+  //       console.log("Navigating to /thanks");
+  //       navigate("/thanks", { state: { fromPurchase: true } });
+  //     } catch (error) {
+  //       // Si checkStock o createOrder fallan, mostramos el error
+  //       console.error("Error en el proceso de la orden:", error);
+  //       setGeneralError(error); // Aquí muestras el error en el formulario
+  //     }
+  //   } else {
+  //     setGeneralError(
+  //       "Por favor, corrija los errores en el formulario antes de continuar."
+  //     );
+  //   }
+  // };
 
   const shipIsDisabled = shippingMethod !== "ship";
   const payISsDisabled = paymentMethod !== "card";
 
-  if (loading) return <p>Cargando...</p>;
+  if (loading) return <Spinner></Spinner>;
 
   return (
     <div className={`${styles.orderForm_container}`}>
       {generalError && <div className={styles.error}>{generalError}</div>}
       <div className={styles.orderForm_shippingMethod}>
         <h3>Método de Entrega</h3>
-        <label>
-          <input
-            type="radio"
-            name="shippingMethod"
-            value="pickup"
-            checked={shippingMethod === "pickup"}
-            onChange={() => setShippingMethod("pickup")}
-          />
-          Retiro en Persona
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="shippingMethodMethod"
-            value="ship"
-            checked={shippingMethod === "ship"}
-            onChange={() => setShippingMethod("ship")}
-          />
-          Envío
-        </label>
-
-        <span>
+        <div className={styles.orderForm_option}>
+          <label className="radioLabel">
+            <input
+              type="radio"
+              name="shippingMethod"
+              value="pickup"
+              checked={shippingMethod === "pickup"}
+              onChange={() => setShippingMethod("pickup")}
+            />
+            Retiro en Persona
+          </label>
+        </div>
+        <div className={styles.orderForm_option}>
+          <label>
+            <input
+              type="radio"
+              name="shippingMethodMethod"
+              value="ship"
+              checked={shippingMethod === "ship"}
+              onChange={() => setShippingMethod("ship")}
+            />
+            Envío
+          </label>
+        </div>
+        {/* <span>
           El precio del envío se establece en función del lugar de entrega y del
           contenido del carrito.
         </span>
@@ -270,32 +332,35 @@ export const OrderForm = (props) => {
               inputHeight={null}
             ></OutlinedTextField>
           </div>
-        </form>
+        </form> */}
       </div>
       <div className={styles.orderForm_paymentmethod}>
         <h3>Método de Pago</h3>
-        <label>
-          <input
-            type="radio"
-            name="paymentMethod"
-            value="person"
-            checked={paymentMethod === "person"}
-            onChange={() => setPaymentMethod("person")}
-          />
-          Pago en Persona
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="paymentMethod"
-            value="card"
-            checked={paymentMethod === "card"}
-            onChange={() => setPaymentMethod("card")}
-          />
-          Tarjeta de Credito/Debito
-        </label>
-
-        <form onSubmit={handleSubmit} className={`${styles.orderForm}`}>
+        <div className={styles.orderForm_option}>
+          <label>
+            <input
+              type="radio"
+              name="paymentMethod"
+              value="person"
+              checked={paymentMethod === "person"}
+              onChange={() => setPaymentMethod("person")}
+            />
+            Pago en Persona
+          </label>
+        </div>
+        <div className={styles.orderForm_option}>
+          <label>
+            <input
+              type="radio"
+              name="paymentMethod"
+              value="card"
+              checked={paymentMethod === "card"}
+              onChange={() => setPaymentMethod("card")}
+            />
+            Tarjeta de Credito/Debito
+          </label>
+        </div>
+        {/* <form onSubmit={handleSubmit} className={`${styles.orderForm}`}>
           <div className={`${styles.grid_col_span_3}`}>
             <OutlinedTextField
               inputDisabled={payISsDisabled}
@@ -360,7 +425,7 @@ export const OrderForm = (props) => {
               inputHeight={null}
             ></OutlinedTextField>
           </div>
-        </form>
+        </form> */}
         <div className={`${styles.orderForm_buttons}`}>
           <OutlinedButton
             buttonType="button"

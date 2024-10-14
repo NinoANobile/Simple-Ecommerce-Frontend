@@ -146,7 +146,7 @@ const VendorRegister = () => {
         ).unwrap();
 
         // Redirigir al home
-        navigate("/");
+        navigate("/pre-verify-email");
       } catch (error) {
         setFormError(error); // El action me devuelve error.message, estos son los errores del servidor.
       }

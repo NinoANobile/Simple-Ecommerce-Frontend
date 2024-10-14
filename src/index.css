@@ -499,5 +499,5 @@ textarea:not([rows]) {
 html,
 body,
 #root {
-  min-width: 28.875rem;
+  min-width: 20rem;
 }

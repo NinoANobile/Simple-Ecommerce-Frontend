@@ -21,13 +21,15 @@
     top: 4rem;
     max-height: calc(100vh - 4rem);
     /* background-color: var(--md-sys-color-surface); */
-    background-color: var(--md-sys-color-surface-container);
+    background-color: var(--md-sys-color-surface-container-low);
     /* width: 16rem; */
     padding: 0 1.5rem;
+    margin-right: 1rem;
     max-width: 19rem;
+    border-radius: 1rem;
     overflow-y: scroll;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(var(--_md-ref-palette-neutral-variant20), 0.4) var(--md-sys-color-surface-container-low);
+    scrollbar-width: none;
+    /* scrollbar-color: rgba(var(--_md-ref-palette-neutral-variant20), 0.4) var(--md-sys-color-surface-container-low); */
 
     opacity: 0;
     transform: translateX(100%);
@@ -49,7 +51,7 @@
     padding: 1.5rem 0;
     position: sticky;
     top: 0;
-    background-color: var(--md-sys-color-surface-container);
+    background-color: var(--md-sys-color-surface-container-low);
     z-index: 10;
 }
 

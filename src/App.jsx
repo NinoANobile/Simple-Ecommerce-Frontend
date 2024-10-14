@@ -25,6 +25,7 @@ import { clearToken } from "./app/features/auth/authSlice";
 import { persistor } from "./app/store"; // Importa el persistor
 import PrivateRoute from "./guards/PrivateRoute";
 import InviteRoute from "./guards/InviteRoute";
+import { ThemeToggle } from "./components";
 
 function App() {
   const dispatch = useDispatch();
@@ -42,13 +43,16 @@ function App() {
 
   return (
     <div className={`${styles.main}`}>
+      <ThemeToggle></ThemeToggle>
       <Routes>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/proddetail/:id" element={<ProductDetail />} />
+        {/* Esta pagina te pide el mail */}
         <Route path="/passrecovery" element={<ForgotPassword />} />
+        {/* Esta pagina te pide el pass nuevo */}
         <Route path="/reset-password" element={<ResetPassword />} />
 
         {/* Ruta protegida para el registro de vendedores */}

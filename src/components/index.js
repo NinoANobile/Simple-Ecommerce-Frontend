@@ -32,6 +32,7 @@ import FilterSummary from "./FilterSummary/FilterSummary";
 import Snackbar from "./Snackbar/Snackbar.jsx";
 import OrderDetail from "./OrderDetail/OrderDetail.jsx";
 import Spinner from "./Spinner/Spinner.jsx";
+import ThemeToggle from "./ThemeToggle/ThemeToggle.jsx";
 
 export {
   FilledButton,
@@ -68,4 +69,5 @@ export {
   OrderDetail,
   TextButton,
   Spinner,
+  ThemeToggle,
 };

@@ -8,7 +8,6 @@ import {
   deleteAccount,
   clearUserError,
 } from "../../app/features/users/usersSlice";
-// import { logoutUser, deleteAccount } from "../../redux/actions";
 
 const NavDrawer = ({ isFixed, isOpen, onClose }) => {
   const navigate = useNavigate();
@@ -23,6 +22,13 @@ const NavDrawer = ({ isFixed, isOpen, onClose }) => {
   const [showDialog, setShowDialog] = useState(false);
   const [dialogContent, setDialogContent] = useState({});
   const [isUserDeleted, setIsUserDeleted] = useState();
+  const [forceRender, setForceRender] = useState(false);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      setForceRender((prev) => !prev);
+    }
+  }, [isAuthenticated]);
 
   useEffect(() => {
     if (isUserDeleted) {
@@ -74,11 +80,10 @@ const NavDrawer = ({ isFixed, isOpen, onClose }) => {
         await dispatch(deleteAccount({ userId, role: userRole })).unwrap();
 
         // Si llega aquí, la eliminación fue exitosa, proceder a desloguear
-        dispatch(logoutUser()); // Asumiendo que tienes una acción para desloguear al usuario
+        dispatch(logoutUser());
         setIsUserDeleted(true);
       } catch (error) {
-        // console.error("Error al eliminar la cuenta:", error);
-        // El manejo de errores adicionales lo puedes hacer en el componente padre, como mencionaste
+        console.error("Error al eliminar la cuenta:", error);
       }
     }
   };
@@ -140,6 +145,7 @@ const NavDrawer = ({ isFixed, isOpen, onClose }) => {
           <ul>
             {!isAuthenticated && (
               <>
+                {/* Home */}
                 <li>
                   <NavLink
                     to="/"
@@ -169,6 +175,7 @@ const NavDrawer = ({ isFixed, isOpen, onClose }) => {
                     </span>
                   </NavLink>
                 </li>
+                {/* Login */}
                 <li>
                   <NavLink
                     className={`${styles.navDrawer_indicator} ${
@@ -186,6 +193,7 @@ const NavDrawer = ({ isFixed, isOpen, onClose }) => {
                     <span className={styles.navDrawer_labelText}>Ingresar</span>
                   </NavLink>
                 </li>
+                {/* Register */}
                 <li>
                   <NavLink
                     className={`${styles.navDrawer_indicator} ${
@@ -205,6 +213,7 @@ const NavDrawer = ({ isFixed, isOpen, onClose }) => {
                     </span>
                   </NavLink>
                 </li>
+                {/* Carrito */}
                 <li>
                   <NavLink
                     className={`${styles.navDrawer_indicator} ${
@@ -226,6 +235,7 @@ const NavDrawer = ({ isFixed, isOpen, onClose }) => {
             )}
             {isAuthenticated && userRole === "usuario" && (
               <>
+                {/* Home */}
                 <li>
                   <NavLink
                     className={`${styles.navDrawer_indicator} ${
@@ -255,6 +265,7 @@ const NavDrawer = ({ isFixed, isOpen, onClose }) => {
                     </span>
                   </NavLink>
                 </li>
+                {/* Carrito */}
                 <li>
                   <NavLink
                     className={`${styles.navDrawer_indicator} ${
@@ -284,6 +295,7 @@ const NavDrawer = ({ isFixed, isOpen, onClose }) => {
                     </span>
                   </NavLink>
                 </li>
+                {/* Pedidos */}
                 <li>
                   <NavLink
                     className={`${styles.navDrawer_indicator} ${
@@ -313,6 +325,7 @@ const NavDrawer = ({ isFixed, isOpen, onClose }) => {
                     </span>
                   </NavLink>
                 </li>
+                {/* Borrar cuenta */}
                 <li>
                   <NavLink
                     className={`${styles.navDrawer_indicator} ${
@@ -343,6 +356,7 @@ const NavDrawer = ({ isFixed, isOpen, onClose }) => {
                     </span>
                   </NavLink>
                 </li>
+                {/* Logout */}
                 <li>
                   <NavLink
                     className={`${styles.navDrawer_indicator} ${
@@ -377,6 +391,7 @@ const NavDrawer = ({ isFixed, isOpen, onClose }) => {
             )}
             {isAuthenticated && userRole === "vendedor" && (
               <>
+                {/* Home */}
                 <li>
                   <NavLink
                     className={`${styles.navDrawer_indicator} ${
@@ -406,6 +421,7 @@ const NavDrawer = ({ isFixed, isOpen, onClose }) => {
                     </span>
                   </NavLink>
                 </li>
+                {/* Cargar Prod */}
                 <li>
                   <NavLink
                     className={`${styles.navDrawer_indicator} ${

@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const initialState = {
   isAuthenticated: !!localStorage.getItem("token"),
@@ -17,15 +18,11 @@ export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async (userData, { rejectWithValue }) => {
     try {
-      const response = await axios.post(
-        "http://localhost:3000/users/login",
-        userData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await axios.post(`${apiUrl}/users/login`, userData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || error.message);
@@ -43,7 +40,7 @@ export const verifyEmail = createAsyncThunk(
   async (token, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/users/verify-email?token=${token}`
+        `${apiUrl}/users/verify-email?token=${token}`
       );
       return response.data;
     } catch (error) {
@@ -57,7 +54,7 @@ export const requestPasswordReset = createAsyncThunk(
   async ({ email }, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/users/request-password-reset",
+        `${apiUrl}/users/request-password-reset`,
         {
           email,
         }
@@ -77,7 +74,7 @@ export const resetPassword = createAsyncThunk(
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/users/reset-password",
+        `${apiUrl}/users/reset-password`,
         { password, token },
         {
           headers: {
@@ -134,6 +131,7 @@ const authSlice = createSlice({
         localStorage.setItem("token", token);
         localStorage.setItem("userId", decodedToken.id);
         localStorage.setItem("role", decodedToken.role);
+        localStorage.setItem("isVerified", decodedToken.isVerified);
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.isAuthenticated = false;
@@ -144,12 +142,17 @@ const authSlice = createSlice({
         state.error = action.payload;
       })
       // Logout
+      .addCase(logoutUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
       .addCase(logoutUser.fulfilled, (state) => {
         // Restablecemos el estado de autenticación y otros estados relacionados
         state.isAuthenticated = initialState.isAuthenticated;
         state.userId = initialState.userId;
         state.role = initialState.role;
         state.token = initialState.token;
+        state.isVerified = initialState.isVerified;
         state.orders = initialState.orders; // Restablecer el estado de órdenes
         state.orderDetails = initialState.orderDetails; // Restablecer el estado de detalles de órdenes
         state.loading = false;
@@ -158,6 +161,11 @@ const authSlice = createSlice({
         localStorage.removeItem("token");
         localStorage.removeItem("userId");
         localStorage.removeItem("role");
+        localStorage.removeItem("isVerified");
+      })
+      .addCase(logoutUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
       })
       .addCase(verifyEmail.pending, (state) => {
         state.loading = true;

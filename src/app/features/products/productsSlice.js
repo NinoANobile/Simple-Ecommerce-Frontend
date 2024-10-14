@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const initialState = {
   byId: {},
@@ -17,7 +18,8 @@ export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get("http://localhost:3000/products");
+      // const response = await axios.get("http://localhost:3000/products");
+      const response = await axios.get(`${apiUrl}/products`);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || error.message);
@@ -29,15 +31,11 @@ export const createProduct = createAsyncThunk(
   async (formData, { rejectWithValue, getState }) => {
     try {
       const token = getState().auth.token;
-      const response = await axios.post(
-        "http://localhost:3000/products/create",
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await axios.post(`${apiUrl}/products/create`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || error.message);
@@ -48,9 +46,7 @@ export const fetchProductDetails = createAsyncThunk(
   "products/fetchProductDetails",
   async (productId, { rejectWithValue, dispatch }) => {
     try {
-      const response = await axios.get(
-        `http://localhost:3000/products/${productId}`
-      );
+      const response = await axios.get(`${apiUrl}/products/${productId}`);
 
       // Actualizar el estado en el frontend
       dispatch(updateProductInState(response.data));
@@ -67,7 +63,7 @@ export const updateProduct = createAsyncThunk(
       const token = getState().auth.token;
       // Realizar la solicitud de actualización del producto en el servidor
       const response = await axios.put(
-        `http://localhost:3000/products/${formData.get("id")}`,
+        `${apiUrl}/products/${formData.get("id")}`,
         formData,
         {
           headers: {
@@ -88,7 +84,7 @@ export const deleteProduct = createAsyncThunk(
   async (productId, { rejectWithValue, dispatch, getState }) => {
     try {
       const token = getState().auth.token;
-      await axios.delete(`http://localhost:3000/products/${productId}`, {
+      await axios.delete(`${apiUrl}/products/${productId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -8,7 +8,7 @@ const persistConfig = {
   key: "root",
   storage,
   // Puedes añadir una whitelist o blacklist si es necesario
-  whitelist: ["auth", "cart"],
+  whitelist: ["cart"],
   // blacklist: ['someReducer'],
 };
 

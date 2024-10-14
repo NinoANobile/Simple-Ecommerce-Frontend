@@ -5,6 +5,7 @@ import {
   OutlinedTextField,
   Dialog,
   Spinner,
+  TextButton,
 } from "../index";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -89,14 +90,14 @@ const ProdDetailData = () => {
         redirectPath: "/",
         actions: (
           <>
-            <button
+            <TextButton
+              text="Ir al Home"
+              icon="home"
               onClick={() => {
                 navigate("/");
                 setIsProductDeleted(false);
               }}
-            >
-              Ir al Home
-            </button>
+            ></TextButton>
           </>
         ),
       });

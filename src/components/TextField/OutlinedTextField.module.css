@@ -22,7 +22,7 @@
     border-radius: 0.25rem;
     transition: all 50ms cubic-bezier(0, 0, 0, 1);
     overflow: visible;
-    z-index: 1;
+    /* z-index: 1; */
 }
 
 .textfield_leadicon,
