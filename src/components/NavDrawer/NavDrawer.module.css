@@ -63,7 +63,8 @@
     top: 0;
     height: 100vh;
     grid-area: drawer;
-    width: 22.5rem;
+    /* width: 22.5rem; */
+    width: 18.75rem;
     /* background-color: var(--md-sys-color-surface); */
     background-color: var(--md-sys-color-surface-container-high);
     padding: 0 0.75rem;
@@ -105,10 +106,11 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 22.5rem;
+    /* width: 22.5rem; */
+    width: 18.75rem;
     height: 100%;
     background-color: var(--md-sys-color-surface-container-low);
-    border-radius: 1rem;
+    border-radius: 0 1rem 1rem 0;
     padding: 0 0.75rem;
     z-index: 1001;
 
@@ -127,18 +129,29 @@
 }
 
 .navDrawer_headline {
-    height: 4rem;
-    object-fit: contain;
     display: flex;
+    justify-content: space-between;
+}
+
+.navDrawer_headLogo {
+    object-fit: contain;
+    /* display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: center; */
     height: 3.5rem;
     /* width: 21rem; */
+    /* width: 17.25rem; */
     padding: 0 1rem;
     font-size: 0.875rem;
     line-height: 1.25rem;
     font-weight: 500;
     letter-spacing: 0.1px;
+}
+
+.navDrawer_headIcon {
+    cursor: pointer;
+    background: none;
+    border: none;
 }
 
 li {
@@ -152,7 +165,8 @@ li {
     align-items: center;
     position: relative;
     height: 3.5rem;
-    width: 21rem;
+    /* width: 21rem; */
+    width: 17.25rem;
     padding: 0 1rem;
     border-radius: 1.75rem;
 
@@ -202,7 +216,8 @@ li {
         content: '';
         position: absolute;
         height: 3.5rem;
-        width: 21rem;
+        /* width: 21rem; */
+        width: 17.25rem;
         border-radius: 1.75rem;
         top: 0;
         left: 0;
@@ -215,7 +230,8 @@ li {
         content: '';
         position: absolute;
         height: 3.5rem;
-        width: 21rem;
+        /* width: 21rem; */
+        width: 17.25rem;
         border-radius: 1.75rem;
         top: 0;
         left: 0;
@@ -240,7 +256,8 @@ li {
     content: '';
     position: absolute;
     height: 3.5rem;
-    width: 21rem;
+    /* width: 21rem; */
+    width: 17.25rem;
     border-radius: 1.75rem;
     top: 0;
     left: 0;

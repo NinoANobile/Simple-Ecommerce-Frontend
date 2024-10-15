@@ -1,7 +1,7 @@
 .cart_container {
     min-height: 100vh;
     display: grid;
-    grid-template-columns: minmax(auto, 22.5rem) minmax(28.875rem, 3fr) minmax(auto, 1fr);
+    grid-template-columns: minmax(auto, 18.75rem) minmax(20rem, 3fr) minmax(auto, 1fr);
     grid-template-rows: 4rem auto;
     grid-template-areas:
         "topAppBar topAppBar topAppBar"
@@ -12,7 +12,7 @@
 @media (min-width: 839px) {
     .cart_container {
         min-height: 100vh;
-        grid-template-columns: minmax(auto, 22.5rem) minmax(28.875rem, 3fr) minmax(auto, 1fr);
+        grid-template-columns: minmax(auto, 18.75rem) minmax(28.875rem, 3fr) minmax(auto, 1fr);
         grid-template-rows: 4rem auto;
         grid-template-areas:
             "drawer topAppBar topAppBar"

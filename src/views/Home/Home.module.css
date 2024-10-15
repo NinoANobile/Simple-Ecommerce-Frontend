@@ -1,7 +1,7 @@
 .home_container {
     width: 100%;
     display: grid;
-    grid-template-columns: minmax(0, 22.5rem) 3fr auto;
+    grid-template-columns: minmax(0, 18.75rem) 3fr auto;
     grid-template-rows: 4rem auto;
     grid-template-areas:
         "topAppBar topAppBar topAppBar"
@@ -13,7 +13,7 @@
 
 @media (min-width: 700px) and (max-width: 1199px) {
     .home_container {
-        grid-template-columns: minmax(0, 22.5rem) 3fr auto;
+        grid-template-columns: minmax(0, 18.75rem) 3fr auto;
         grid-template-rows: 4rem auto;
         grid-template-areas:
             "drawer topAppBar topAppBar"
@@ -27,7 +27,7 @@
 
 @media (min-width: 1200px) {
     .home_container {
-        grid-template-columns: minmax(0, 22.5rem) 3fr auto;
+        grid-template-columns: minmax(0, 18.75rem) 3fr auto;
         grid-template-rows: 4rem auto;
         grid-template-areas:
             "drawer topAppBar topAppBar"

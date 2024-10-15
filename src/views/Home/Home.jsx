@@ -43,7 +43,7 @@ const Home = () => {
   const handleOpenDrawer = () => setDrawerOpen(true);
   const handleCloseDrawer = () => setDrawerOpen(false);
 
-  const handleOpenSideSheet = () => setSideSheetOpen(true);
+  const handleOpenSideSheet = () => setSideSheetOpen(!isSideSheetOpen);
   const handleCloseSideSheet = () => setSideSheetOpen(false);
 
   useEffect(() => {
@@ -84,8 +84,9 @@ const Home = () => {
     setShowDialog(false);
   };
 
-  console.log("Esto es isSmallScreen: ", isSmallScreen);
-  console.log("Esto es isSideSheetOpen: ", isSideSheetOpen);
+  // console.log("Esto es isSmallScreen: ", isSmallScreen);
+  // console.log("Esto es isSideSheetOpen: ", isSideSheetOpen);
+  console.log(import.meta.env.VITE_API_URL); // Verifica si se muestra la URL del túnel
 
   if (loading) return <Spinner></Spinner>;
   // if (error) return <p>Error: {error}. </p>;

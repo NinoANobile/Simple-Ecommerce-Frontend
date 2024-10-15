@@ -33,6 +33,7 @@ import Snackbar from "./Snackbar/Snackbar.jsx";
 import OrderDetail from "./OrderDetail/OrderDetail.jsx";
 import Spinner from "./Spinner/Spinner.jsx";
 import ThemeToggle from "./ThemeToggle/ThemeToggle.jsx";
+import Switch from "./Switch/Switch.jsx";
 
 export {
   FilledButton,
@@ -70,4 +71,5 @@ export {
   TextButton,
   Spinner,
   ThemeToggle,
+  Switch,
 };

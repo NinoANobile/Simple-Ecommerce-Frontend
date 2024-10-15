@@ -25,7 +25,7 @@ import { clearToken } from "./app/features/auth/authSlice";
 import { persistor } from "./app/store"; // Importa el persistor
 import PrivateRoute from "./guards/PrivateRoute";
 import InviteRoute from "./guards/InviteRoute";
-import { ThemeToggle } from "./components";
+import { ThemeToggle, Switch } from "./components";
 
 function App() {
   const dispatch = useDispatch();
@@ -44,6 +44,7 @@ function App() {
   return (
     <div className={`${styles.main}`}>
       <ThemeToggle></ThemeToggle>
+      <Switch></Switch>
       <Routes>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />

@@ -138,9 +138,10 @@ const NavDrawer = ({ isFixed, isOpen, onClose }) => {
             <img
               src="logo.png"
               alt="Logo"
-              className={styles.navDrawer_headline}
+              className={styles.navDrawer_headLogo}
             />
           </Link>
+
           {/* <h2 className={styles.navDrawer_headline}>Headline for branding</h2> */}
           <ul>
             {!isAuthenticated && (
@@ -553,13 +554,21 @@ const NavDrawer = ({ isFixed, isOpen, onClose }) => {
           }`}
         >
           <nav>
-            <Link to="/" aria-label="Home">
-              <img
-                src="logo.png"
-                alt="Logo"
-                className={styles.navDrawer_headline}
-              />
-            </Link>
+            <div className={styles.navDrawer_headline}>
+              <Link to="/" aria-label="Home">
+                <img
+                  src="logo.png"
+                  alt="Logo"
+                  className={styles.navDrawer_headLogo}
+                />
+              </Link>
+              <button
+                className={`${styles.navDrawer_headIcon} material-symbols-rounded`}
+                onClick={onClose}
+              >
+                close
+              </button>
+            </div>
             {/* <h2 className={styles.navDrawer_headline}>Headline for branding</h2> */}
             <ul>
               {!isAuthenticated && (

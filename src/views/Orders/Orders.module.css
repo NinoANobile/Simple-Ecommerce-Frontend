@@ -1,24 +1,24 @@
 .orders_container {
     min-height: 100vh;
     display: grid;
-    grid-template-columns: minmax(auto, 1fr) minmax(28.875rem, 3fr) minmax(auto, 1fr);
+    grid-template-columns: minmax(auto, 18.75rem) minmax(20rem, 3fr) minmax(auto, 1fr);
     grid-template-rows: 4rem auto;
     grid-template-areas:
         "topAppBar topAppBar topAppBar"
         "main main main";
-    background-color: var(--md-sys-color-surface-container);
+    /* background-color: var(--md-sys-color-surface-container-high); */
 }
 
 @media (min-width: 839px) {
     .orders_container {
         min-height: 100vh;
-        grid-template-columns: minmax(auto, 1fr) minmax(28.875rem, 3fr) auto;
+        grid-template-columns: minmax(auto, 18.75rem) minmax(28.875rem, 3fr) auto;
         grid-template-rows: 4rem auto;
         grid-template-areas:
             "drawer topAppBar topAppBar"
             "drawer main main";
         /* "drawer main details"; */
-        background-color: var(--md-sys-color-surface-container);
+        /* background-color: var(--md-sys-color-surface-container-high); */
     }
 }
 
