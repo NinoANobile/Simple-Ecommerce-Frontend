@@ -1,11 +1,14 @@
 import styles from "./Switch.module.css";
 
-function Switch() {
+function Switch({ onClick = null, text = "Switch" }) {
   return (
-    <label className={styles.switch}>
-      <input type="checkbox" />
-      <span className={`${styles.slider} ${styles.round}`}></span>
-    </label>
+    <div className={styles.switch_container}>
+      <label className={styles.switch}>
+        <input type="checkbox" onClick={onClick} />
+        <span className={`${styles.switch_slider} `}></span>
+      </label>
+      <span className={styles.switch_text}>{text}</span>
+    </div>
   );
 }
 

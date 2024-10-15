@@ -1,5 +1,5 @@
 import styles from "./NavDrawer.module.css";
-import { Dialog, TextButton } from "../index";
+import { Dialog, TextButton, ThemeToggle } from "../index";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useLocation, Link, useNavigate } from "react-router-dom";
@@ -232,6 +232,9 @@ const NavDrawer = ({ isFixed, isOpen, onClose }) => {
                     <span className={styles.navDrawer_labelText}>Carrito</span>
                   </NavLink>
                 </li>
+                <li>
+                  <ThemeToggle></ThemeToggle>
+                </li>
               </>
             )}
             {isAuthenticated && userRole === "usuario" && (
@@ -388,6 +391,9 @@ const NavDrawer = ({ isFixed, isOpen, onClose }) => {
                     </span>
                   </NavLink>
                 </li>
+                <li>
+                  <ThemeToggle></ThemeToggle>
+                </li>
               </>
             )}
             {isAuthenticated && userRole === "vendedor" && (
@@ -541,6 +547,9 @@ const NavDrawer = ({ isFixed, isOpen, onClose }) => {
                     </span>
                   </NavLink>
                 </li>
+                <li>
+                  <ThemeToggle></ThemeToggle>
+                </li>
               </>
             )}
           </ul>
@@ -658,6 +667,9 @@ const NavDrawer = ({ isFixed, isOpen, onClose }) => {
                         Carrito
                       </span>
                     </NavLink>
+                  </li>
+                  <li>
+                    <ThemeToggle></ThemeToggle>
                   </li>
                 </>
               )}
@@ -810,6 +822,9 @@ const NavDrawer = ({ isFixed, isOpen, onClose }) => {
                       </span>
                     </NavLink>
                   </li>
+                  <li>
+                    <ThemeToggle></ThemeToggle>
+                  </li>
                 </>
               )}
               {isAuthenticated && userRole === "vendedor" && (
@@ -960,6 +975,9 @@ const NavDrawer = ({ isFixed, isOpen, onClose }) => {
                         Desconectarse
                       </span>
                     </NavLink>
+                  </li>
+                  <li>
+                    <ThemeToggle></ThemeToggle>
                   </li>
                 </>
               )}

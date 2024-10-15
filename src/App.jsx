@@ -21,11 +21,10 @@ import {
   ResetPassword,
 } from "./views/index";
 import { fetchProducts } from "./app/features/products/productsSlice";
-import { clearToken } from "./app/features/auth/authSlice";
-import { persistor } from "./app/store"; // Importa el persistor
+// import { clearToken } from "./app/features/auth/authSlice";
+// import { persistor } from "./app/store"; // Importa el persistor
 import PrivateRoute from "./guards/PrivateRoute";
 import InviteRoute from "./guards/InviteRoute";
-import { ThemeToggle, Switch } from "./components";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,18 +32,16 @@ function App() {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  const handleClearState = () => {
-    persistor.purge();
-  };
+  // const handleClearState = () => {
+  //   persistor.purge();
+  // };
 
-  const handleClearToken = () => {
-    dispatch(clearToken());
-  };
+  // const handleClearToken = () => {
+  //   dispatch(clearToken());
+  // };
 
   return (
     <div className={`${styles.main}`}>
-      <ThemeToggle></ThemeToggle>
-      <Switch></Switch>
       <Routes>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
@@ -73,8 +70,8 @@ function App() {
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <button onClick={handleClearToken}>Borrar Token</button>
-      <button onClick={handleClearState}>Clear State</button>
+      {/* <button onClick={handleClearToken}>Borrar Token</button>
+      <button onClick={handleClearState}>Clear State</button> */}
     </div>
   );
 }

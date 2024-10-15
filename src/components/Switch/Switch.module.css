@@ -1,3 +1,53 @@
+/* La animación para agrandar la bolita */
+@keyframes grow {
+    0% {
+        transform: scale(1) translateY(0);
+    }
+
+    100% {
+        transform: scale(1.75);
+    }
+}
+
+/* La animación para mover la bolita */
+@keyframes move {
+    0% {
+        transform: translateX(0) scale(1.75);
+    }
+
+    100% {
+        transform: translateX(1.25rem) scale(1.5);
+    }
+}
+
+/* La animacion para agrandar la bolita antes de volver */
+@keyframes growBack {
+    0% {
+        transform: translateX(1.25rem) scale(1.5);
+    }
+
+    100% {
+        transform: translateX(1.25rem) scale(1.75);
+    }
+}
+
+/* La animación inversa para mover la bolita hacia la izquierda */
+@keyframes moveBack {
+    0% {
+        transform: translateX(1.25rem) scale(1.75);
+    }
+
+    100% {
+        transform: translateX(0) scale(1);
+    }
+}
+
+.switch_container {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+}
+
 .switch {
     position: relative;
     display: inline-block;
@@ -11,7 +61,8 @@
     height: 0;
 }
 
-.slider.round {
+/* Esto es el track */
+.switch_slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -20,41 +71,65 @@
     bottom: 0;
     background-color: var(--md-sys-color-surface-container-highest);
     border: 2px solid var(--md-sys-color-outline);
-    -webkit-transition: .4s;
-    transition: .4s;
-    border-radius: 2rem;
+    border-radius: 1.625rem;
+    transition: all 0.1s ease-in-out 0.2s;
 }
 
-.slider.round:before {
-    position: absolute;
-    content: "";
-    height: 1rem;
-    width: 1rem;
-    left: 4px;
-    bottom: 4px;
-    background-color: var(--md-sys-color-outline);
-    -webkit-transition: .4s;
-    transition: .4s;
-    border-radius: 50%;
-}
-
-input:checked+.slider {
+/* Esto es el track luego del click*/
+input:checked+.switch_slider {
     background-color: var(--md-sys-color-primary);
     border: 2px solid var(--md-sys-color-primary);
 }
 
-input:focus+.slider {
-    box-shadow: 0 0 1px #2196F3;
+/* Esto es la bolita (Handle) */
+.switch_slider:before {
+    position: absolute;
+    content: "";
+    height: 1rem;
+    width: 1rem;
+    left: 0.375rem;
+    bottom: 0.375rem;
+    background-color: var(--md-sys-color-outline);
+    border-radius: 50%;
+    transition: all 0.1s ease-in-out 0.2s;
 }
 
-input:checked+.slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-}
-
-input:checked+.slider.round:before {
-    height: 1.5rem;
-    width: 1.5rem;
+/* Esto es la bolita (Handle) luego del click*/
+input:checked+.switch_slider:before {
+    animation: grow 0.2s ease-in-out forwards, move 0.1s ease-in-out 0.2s forwards;
     background-color: var(--md-sys-color-on-primary);
+}
+
+/* Animacion inversa para la bolita (Handle) */
+input:not(:checked)+.switch_slider:before {
+    animation: growBack 0.2s ease-in-out forwards, moveBack 0.1s ease-in-out 0.2s forwards;
+}
+
+/* Esto es el icono */
+.switch_slider::after {
+    position: absolute;
+    left: 1.625rem;
+    top: 0.375rem;
+    content: "check";
+    font-family: 'Material Symbols Rounded';
+    font-size: 0;
+    font-weight: 500;
+    line-height: 1rem;
+    letter-spacing: 0;
+    color: var(--md-sys-color-primary);
+    transition: all 0.1s ease-in-out 0.2s;
+}
+
+/* Esto es el icono luego del click*/
+input:checked+.switch_slider::after {
+    font-size: 1rem;
+}
+
+.switch_text {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 0.1px;
+    color: var(--md-sys-color-on-surface);
+    padding-left: 1rem;
 }

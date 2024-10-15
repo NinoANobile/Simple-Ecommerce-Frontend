@@ -1,3 +1,4 @@
+import { Switch } from "../index";
 import { useState, useEffect } from "react";
 
 const ThemeToggle = () => {
@@ -20,9 +21,10 @@ const ThemeToggle = () => {
   };
 
   return (
-    <button onClick={toggleTheme}>
-      {theme === "light" ? "Switch to Dark Mode" : "Switch to Light Mode"}
-    </button>
+    <Switch
+      onClick={toggleTheme}
+      text={theme === "light" ? "Switch to Dark Mode" : "Switch to Light Mode"}
+    ></Switch>
   );
 };
 
