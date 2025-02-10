@@ -23,7 +23,8 @@ const ThemeToggle = () => {
   return (
     <Switch
       onClick={toggleTheme}
-      text={theme === "light" ? "Switch to Dark Mode" : "Switch to Light Mode"}
+      // text={theme === "light" ? "Switch to Dark Mode" : "Switch to Light Mode"}
+      text="Modo Oscuro"
     ></Switch>
   );
 };

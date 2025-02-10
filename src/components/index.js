@@ -1,4 +1,5 @@
 import FilledButton from "./Buttons/FilledButton";
+import FilledIconButton from "./Buttons/FilledIconButton.jsx";
 import OutlinedButton from "./Buttons/OutlinedButton";
 import TextButton from "./Buttons/TextButton.jsx";
 import CartItem from "./CartItem/CartItem";
@@ -72,4 +73,5 @@ export {
   Spinner,
   ThemeToggle,
   Switch,
+  FilledIconButton,
 };

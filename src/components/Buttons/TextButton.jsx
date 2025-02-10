@@ -7,7 +7,7 @@ import styles from "../Buttons/TextButton.module.css";
 const TextButton = ({
   type = "button",
   text = "Click Me",
-  name = "FilledButton",
+  name = "TextButton",
   icon = "",
   onClick = null,
   //   width = "auto",

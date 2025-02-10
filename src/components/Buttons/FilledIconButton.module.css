@@ -1,0 +1,45 @@
+.iconButton_button,
+.iconButton_checkbox {
+    appearance: none;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.iconButton_button {
+    border: none;
+    background-color: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
+    font-variation-settings: 'FILL' 1;
+}
+
+.iconButton_label {
+    position: relative;
+    display: inline-block;
+}
+
+.iconButton_checkbox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--md-sys-color-surface-container-highest);
+}
+
+.iconButton_checkbox+.iconButton_icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--md-sys-color-primary);
+}
+
+.iconButton_checkbox:checked {
+    background-color: var(--md-sys-color-primary);
+}
+
+.iconButton_checkbox:checked+.iconButton_icon {
+    color: var(--md-sys-color-on-primary);
+    font-variation-settings: 'FILL' 1;
+}

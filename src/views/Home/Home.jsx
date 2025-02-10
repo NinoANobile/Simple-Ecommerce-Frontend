@@ -10,6 +10,7 @@ import {
   Dialog,
   TextButton,
   Spinner,
+  FilledIconButton,
 } from "../../components/index";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -134,6 +135,7 @@ const Home = () => {
         />
       )}
       <main className={styles.home_main}>
+        {/* <FilledIconButton isToggle={true}></FilledIconButton> */}
         {hasActiveFilters ? <FilteredProdContainer /> : <FeaturedContainer />}
       </main>
     </div>

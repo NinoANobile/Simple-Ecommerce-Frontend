@@ -1,30 +1,3 @@
-// import { useRef, useEffect } from "react";
-
-// const Dialog = ({ isOpen, onClose, title, content, actions }) => {
-//   const dialogRef = useRef(null);
-
-//   useEffect(() => {
-//     if (isOpen) {
-//       dialogRef.current.showModal();
-//     } else {
-//       if (dialogRef.current.open) {
-//         dialogRef.current.close();
-//       }
-//     }
-//   }, [isOpen]);
-
-//   return (
-//     <dialog ref={dialogRef} className="dialog-content">
-//       <h2>{title}</h2>
-//       <p>{content}</p>
-//       <div>{actions}</div>
-//       <button onClick={onClose}>Cerrar</button>
-//     </dialog>
-//   );
-// };
-
-// export default Dialog;
-
 import TextButton from "../Buttons/TextButton";
 import styles from "./Dialog.module.css";
 import { useRef, useEffect } from "react";
@@ -50,13 +23,6 @@ const Dialog = ({
       }
     }
   }, [isOpen]);
-
-  // const handleClose = () => {
-  //   onClose(); // Llama a la función onClose prop original para manejar el cierre
-  //   if (redirectPath) {
-  //     navigate(redirectPath); // Redirige si se ha proporcionado un path
-  //   }
-  // };
 
   return (
     <dialog
